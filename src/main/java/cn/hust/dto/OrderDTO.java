@@ -3,6 +3,8 @@ package cn.hust.dto;
 import cn.hust.dataobject.OrderDetail;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
  **/
 @Data
 public class OrderDTO {
-   // private String orderId;
+    private String orderId;
 
     /** 买家名字. */
     private String buyerName;
@@ -27,19 +29,19 @@ public class OrderDTO {
     private String buyerOpenid;
 
     /** 订单总金额. */
-  //  private BigDecimal orderAmount;
+    private BigDecimal orderAmount;
 
     /** 订单状态,默认新下单. */
-  //  private Integer orderStatus ;
+    private Integer orderStatus ;
 
     /** 支付状态,默认未支付. */
-  //  private Integer payStatus ;
+    private Integer payStatus ;
 
     /** 订单创建时间. */
-  //  private Date createTime;
+    private Date createTime;
 
     /** 订单更新时间. */
-  //  private Date updateTime;
+    private Date updateTime;
 
    List<OrderDetail> orderDetailList;
    // List<CartDTO> cartDTOList;

@@ -1,6 +1,5 @@
 package cn.hust.service;
 
-import cn.hust.dataobject.OrderMaster;
 import cn.hust.dto.OrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,7 @@ public interface OrderService {
     OrderDTO create(OrderDTO orderDTO);
 
     /** 查询单个订单. */
-    OrderMaster findOne(String orderId);
+    OrderDTO findOne(String orderId);
 
     /** 查询订单列表. */
     Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
