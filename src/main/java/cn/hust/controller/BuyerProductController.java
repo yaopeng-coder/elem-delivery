@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 买家商品
@@ -40,14 +41,14 @@ public class BuyerProductController {
 
         //2.查询类目(一次性查询)
         //传统方法
-        List<Integer> categoryTypeList = new ArrayList<>();
+       /* List<Integer> categoryTypeList = new ArrayList<>();
         for(ProductInfo productInfo: productInfoList){
             categoryTypeList.add(productInfo.getCategoryType());
-        }
+        }*/
         //精简方法(java8,lambda)
-//        List<Integer> categoryTypeList = productInfoList.stream()
-//                .map(e -> e.getCategoryType())
-//                .collect(Collectors.toList());
+        List<Integer> categoryTypeList = productInfoList.stream()
+                .map(e -> e.getCategoryType())
+                .collect(Collectors.toList());
         List<ProductCategory> productCategoryList  = categoryService.findByCategoryTypeIn(categoryTypeList);
         System.out.println(productCategoryList);
 
