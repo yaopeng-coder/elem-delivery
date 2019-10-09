@@ -6,6 +6,7 @@ import cn.hust.dto.OrderDTO;
 import cn.hust.enums.ResultEnum;
 import cn.hust.exception.SellException;
 import cn.hust.form.OrderForm;
+import cn.hust.service.BuyerService;
 import cn.hust.service.OrderService;
 import cn.hust.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     //创建订单
     @PostMapping("/create")
@@ -78,8 +82,7 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderDTO>  detail(@RequestParam("openid") String openid,
                                       @RequestParam("orderId") String orderId){
-        //TODO 不安全的做法，改进
-        OrderDTO orderDTO = orderService.findOne(orderId);
+        OrderDTO orderDTO = buyerService.findOrderOne(openid,orderId);
         return  ResultVOUtil.success(orderDTO);
     }
 
@@ -87,9 +90,7 @@ public class BuyerOrderController {
     @PostMapping("/cancel")
     public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId){
-
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        orderService.cancel(orderDTO);
+        buyerService.cancelOrder(openid,orderId);
         return ResultVOUtil.success();
     }
 }

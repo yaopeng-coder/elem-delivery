@@ -95,7 +95,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    //查询单个订单
+    //查询单个订单,这里不设置findone(string orderid,String openid),因为这个方法公用，不仅仅是买家要用
     @Override
     public OrderDTO findOne(String orderId) {
 
