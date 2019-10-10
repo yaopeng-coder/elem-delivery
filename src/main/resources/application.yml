@@ -13,3 +13,8 @@ server:
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
+
+
+wechat:
+  mpAppId: wx514cc4048133e1d6
+  mpAppSecret: e5b2b9cc7549136bc6a5622291a09809
