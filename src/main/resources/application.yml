@@ -16,5 +16,8 @@ server:
 
 
 wechat:
-  mpAppId: wx514cc4048133e1d6
-  mpAppSecret: e5b2b9cc7549136bc6a5622291a09809
+    mpAppId: wxd898fcb01713c658
+    mchId: 1483469312
+    mchKey: C5245D70627C1F8E9964D494B0735025
+    keyPath: E:/ele-encoding/coding-117/doc/h5.p12
+    notifyUrl: http://thexx.natapp1.cc/sell/pay/notify

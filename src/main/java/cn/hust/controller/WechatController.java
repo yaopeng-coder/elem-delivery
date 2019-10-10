@@ -28,6 +28,14 @@ public class WechatController {
     @Autowired
     private WxMpService wxMpService;
 
+    /**
+     * 授权大致流程：用户访问域名，前端根据cookie中有没有oopenid来判断是否需要经过授权流程，
+     * 若没有则重定向到后台授权接口访问（wechat/authorize?returnUrl），经历两次重定向，获取到openid,最后再次返回前端列表（此时cookie中有openid）
+     * @param returnUrl
+     * @return
+     */
+
+    //个人理解,授权部分第一个链接，需要设置appid,scope，secret,跳转该链接
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl){
         String url = "http://thexx.natapp1.cc/sell/wechat/userInfo";
@@ -35,6 +43,7 @@ public class WechatController {
         return "redirect:" + redirectUrl;
     }
 
+    //个人理解，授权部分第二个链接，通过上述链接能返回code的值，用户获取到该code值即可获的AccessToken值，通过该值可以取出openid
     @GetMapping("/userInfo")
     public String userInfo(@RequestParam("code") String code,
                            @RequestParam("state") String returnUrl){

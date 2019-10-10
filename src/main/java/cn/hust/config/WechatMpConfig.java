@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
+ *授权相关类
  * @program: elem-delivery
  * @author: yaopeng
  * @create: 2019-10-10 08:44
