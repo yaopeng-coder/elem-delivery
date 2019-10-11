@@ -13,6 +13,7 @@ import cn.hust.exception.SellException;
 import cn.hust.repository.OrderDetailRepository;
 import cn.hust.repository.OrderMasterRepository;
 import cn.hust.service.OrderService;
+import cn.hust.service.PayService;
 import cn.hust.service.ProductService;
 import cn.hust.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     //创建订单
     @Override
@@ -155,10 +159,12 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
-
         productService.increaseStock(cartDTOList);
+
         //如果已支付,需要退款
-        //TODO
+        if(orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
+            payService.refund(orderDTO);
+        }
         return orderDTO;
     }
 

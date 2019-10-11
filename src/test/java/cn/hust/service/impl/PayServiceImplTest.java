@@ -20,6 +20,7 @@ public class PayServiceImplTest {
 
     @Autowired
     private OrderService orderService;
+
     @Test
     public void create() throws Exception {
 
@@ -27,5 +28,13 @@ public class PayServiceImplTest {
         OrderDTO orderDTO = orderService.findOne("1570540061932719444");
         payService.create(orderDTO);
     }
+
+    @Test
+    public void refund(){
+        OrderDTO orderDTO = orderService.findOne("1570540061932719460");
+        payService.refund(orderDTO);
+    }
+
+
 
 }
