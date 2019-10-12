@@ -1,7 +1,11 @@
 package cn.hust.dto;
 
 import cn.hust.dataobject.OrderDetail;
+import cn.hust.enums.OrderStatusEnum;
+import cn.hust.enums.PayStatusEnum;
+import cn.hust.utils.EnumUtil;
 import cn.hust.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
@@ -50,4 +54,14 @@ public class OrderDTO {
 
    List<OrderDetail> orderDetailList;
    // List<CartDTO> cartDTOList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+    }
 }
