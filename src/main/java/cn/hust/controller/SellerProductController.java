@@ -145,9 +145,10 @@ public class SellerProductController {
         try {
             if(!StringUtils.isEmpty(productForm.getProductId())){
                 productInfo = productService.findOne(productForm.getProductId());
+            }else {
+                productForm.setProductId(KeyUtil.getUniqueKey());
             }
             BeanUtils.copyProperties(productForm,productInfo);
-            productInfo.setProductId(KeyUtil.getUniqueKey());
             productService.save(productInfo);
         } catch (SellException e) {
             map.put("msg",e.getMessage());
