@@ -1,10 +1,15 @@
 package cn.hust.dataobject;
 
+import cn.hust.enums.ProductStatusEnum;
+import cn.hust.utils.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品信息
@@ -14,6 +19,7 @@ import java.math.BigDecimal;
  **/
 @Entity
 @Data
+@DynamicUpdate
 public class ProductInfo {
 
     @Id
@@ -39,4 +45,15 @@ public class ProductInfo {
 
     /** 类目编号. */
     private Integer categoryType;
+
+    /** 产品上架时间. */
+    private Date createTime;
+
+    /** 产品更新时间. */
+    private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum(){
+        return EnumUtil.getByCode(productStatus,ProductStatusEnum.class);
+    }
 }

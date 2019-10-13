@@ -56,4 +56,17 @@ public class ProductServiceImplTest {
         Assert.assertNotNull(result);
     }
 
+
+    @Test
+    public void onSale(){
+        ProductInfo result = productService.onSale("321");
+        Assert.assertEquals(ProductStatusEnum.UP,result.getProductStatusEnum());
+    }
+
+
+    @Test
+    public void offSale(){
+        ProductInfo result = productService.offSale("111");
+        Assert.assertEquals(ProductStatusEnum.DOWN,result.getProductStatusEnum());
+    }
 }
