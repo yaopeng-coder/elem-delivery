@@ -31,7 +31,7 @@
                                     <tr>
                                         <td>${productInfo.productId}</td>
                                         <td>${productInfo.productName}</td>
-                                        <td><img src="${productInfo.productIcon}" alt=""></td>
+                                        <td><img height="100" width="100" src="${productInfo.productIcon}" alt=""></td>
                                         <td>${productInfo.productPrice}</td>
                                         <td>${productInfo.productStock}</td>
                                         <td>${productInfo.productDescription}</td>
