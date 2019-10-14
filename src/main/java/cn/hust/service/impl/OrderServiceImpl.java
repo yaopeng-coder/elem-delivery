@@ -15,6 +15,7 @@ import cn.hust.repository.OrderMasterRepository;
 import cn.hust.service.OrderService;
 import cn.hust.service.PayService;
 import cn.hust.service.ProductService;
+import cn.hust.service.PushMessageService;
 import cn.hust.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -51,6 +52,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    PushMessageService pushMessageService;
 
     //创建订单
     @Override
@@ -185,6 +189,10 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】状态修改失败,orderMaster={}",orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
