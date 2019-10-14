@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql://10.11.48.193:3306/sell?serverTimezone=Asia/Shanghai&characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+  redis:
+    host: 10.11.48.193
+    port: 6379
 server:
   context-path: /sell
 #logging:
@@ -26,4 +29,4 @@ wechat:
 projectUrl:
     wechatMpAuthorize: http://thexx.natapp1.cc
     wechatOpenAuthorize: http://thexx.natapp1.cc
-    sell:
+    sell: http://thexx.natapp1.cc

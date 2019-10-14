@@ -84,7 +84,7 @@ public class WechatController {
         }
 
         String openId = wxMpOAuth2AccessToken.getOpenId();
-        return "redirect:" + "http://ww.baidu.com" + "?openid=" + openId;
+        return "redirect:" + "http://thexx.natapp1.cc/sell/seller/login" + "?openid=" + openId;
     }
 
 
