@@ -12,10 +12,7 @@ import cn.hust.enums.ResultEnum;
 import cn.hust.exception.SellException;
 import cn.hust.repository.OrderDetailRepository;
 import cn.hust.repository.OrderMasterRepository;
-import cn.hust.service.OrderService;
-import cn.hust.service.PayService;
-import cn.hust.service.ProductService;
-import cn.hust.service.PushMessageService;
+import cn.hust.service.*;
 import cn.hust.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -54,7 +51,10 @@ public class OrderServiceImpl implements OrderService {
     private PayService payService;
 
     @Autowired
-    PushMessageService pushMessageService;
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     //创建订单
     @Override
@@ -99,6 +99,9 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(),e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
