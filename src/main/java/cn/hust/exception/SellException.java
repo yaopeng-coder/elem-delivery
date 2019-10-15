@@ -1,12 +1,14 @@
 package cn.hust.exception;
 
 import cn.hust.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * @program: elem-delivery
  * @author: yaopeng
  * @create: 2019-10-08 10:07
  **/
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;

@@ -21,13 +21,16 @@ import java.util.List;
  * @create: 2019-10-07 15:36
  **/
 @Service
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
 
     @Override
+  //  @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
+
         return repository.findOne(productId);
     }
 
@@ -42,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
     }

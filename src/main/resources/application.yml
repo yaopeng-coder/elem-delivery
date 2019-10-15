@@ -35,3 +35,6 @@ projectUrl:
     wechatMpAuthorize: http://thexx.natapp1.cc
     wechatOpenAuthorize: http://thexx.natapp1.cc
     sell: http://thexx.natapp1.cc
+logging:
+  level:
+    cn.hust.dataobject.mapper: trace

@@ -10,6 +10,7 @@ import cn.hust.service.ProductService;
 import cn.hust.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +31,13 @@ public class BuyerProductController {
     @Autowired
     private ProductService productService;
 
+    /**
+     * 注意，用了@cacheable或者其他缓存的注解后，一定要将其返回的对象给序列化，否则出错
+     */
     @Autowired
     private CategoryService categoryService;
     @RequestMapping("/list")
+    @Cacheable(cacheNames = "product" ,key="123",unless = "#result.getCode() != 0")
     public ResultVO list(){
 
         //1.查询所有的上架商品

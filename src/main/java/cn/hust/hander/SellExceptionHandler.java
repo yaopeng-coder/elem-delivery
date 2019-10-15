@@ -1,8 +1,14 @@
 package cn.hust.hander;
 
+import cn.hust.VO.ResultVO;
+import cn.hust.exception.SellException;
 import cn.hust.exception.SellerAuthorizeException;
+import cn.hust.utils.ResultVOUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -22,5 +28,16 @@ public class SellExceptionHandler {
                "state=http://thexx.natapp1.cc/sell/wechat/qrUserInfo");
    }
 
+    /**
+     * 注意这里的注解@responseStatus,改变返回的状态码信息，否则返回的状态码为200
+     * @param
+     * @return
+     */
+   @ExceptionHandler(value = SellException.class)
+   @ResponseStatus(value = HttpStatus.FORBIDDEN)
+   @ResponseBody
+    public ResultVO handlerSellerException(SellException e){
+       return ResultVOUtil.error(e.getCode(),e.getMessage());
+   }
 
 }
