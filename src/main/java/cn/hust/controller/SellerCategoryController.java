@@ -44,7 +44,7 @@ public class SellerCategoryController {
     }
 
     /**
-     * 类目展示
+     * 类目修改转的界面
      * @param categoryId
      * @param map
      * @return
