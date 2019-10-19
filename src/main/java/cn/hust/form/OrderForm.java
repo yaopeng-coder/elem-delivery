@@ -1,7 +1,9 @@
 package cn.hust.form;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotEmpty;
+
 
 /**
  * @program: elem-delivery

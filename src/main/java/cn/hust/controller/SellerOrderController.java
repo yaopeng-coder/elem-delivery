@@ -42,7 +42,7 @@ public class SellerOrderController {
     public ModelAndView list(@RequestParam(value = "page",defaultValue = "1") Integer page,
                              @RequestParam(value = "size",defaultValue = "3") Integer size,
                              Map<String, Object> map){
-        PageRequest pageRequest = new PageRequest(page - 1, size);
+        PageRequest pageRequest =  PageRequest.of(page - 1, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
         //map直接将orderDTOPage对象注入进去，所以页面在取值时直接orderDTOPage.orderId,而不是orderDTOPage.getOrderId
         map.put("orderDTOPage",orderDTOPage);

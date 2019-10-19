@@ -1,5 +1,6 @@
 package cn.hust.repository;
 
+import cn.hust.ElemDeliveryApplication;
 import cn.hust.dataobject.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = ElemDeliveryApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductCategoryRepositoryTest {
 
     @Autowired
@@ -21,7 +22,7 @@ public class ProductCategoryRepositoryTest {
 
     @Test
     public void fingOneTest(){
-        ProductCategory productCategory = repository.findOne(1);
+        ProductCategory productCategory = repository.findById(1).orElse(null);
         System.out.println(productCategory);
     }
 

@@ -32,8 +32,10 @@ public class SellerAuthorizeAspect {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @Pointcut("execution(public * cn.hust.controller.Seller*.*(..))"+
-            "&&!execution(public * cn.hust.controller.SellerUserController.*(..))")
+   /* @Pointcut("execution(public * cn.hust.controller.Seller*.*(..))"+
+            "&&!execution(public * cn.hust.controller.SellerUserController.*(..))")*/
+    @Pointcut("execution(public * cn.hust.controller.Seller*.*(..))" +
+            "&& !execution(public * cn.hust.controller.SellerUserController.*(..))")
     public void verify(){}
 
 
